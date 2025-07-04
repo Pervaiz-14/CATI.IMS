@@ -72,9 +72,6 @@ To get a local copy of the project up and running for development or testing, fo
 
 Upon successful setup, navigate to the application URL in your web browser. You will be presented with the login screen. Once authenticated (initial user setup might be required, or refer to internal documentation), you can begin managing inventory items, viewing reports, and performing other system operations.
 
-## **🤝 Contribution**
-
-Contributions are welcome\! If you have suggestions or find issues, please open an issue or submit a pull request.
 
 ## **📄 License**
 
