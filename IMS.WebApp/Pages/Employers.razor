@@ -1,0 +1,62 @@
+﻿@* @page "/employers"
+@using IMS.CoreBusiness
+@inject EmployerService EmployerService
+
+<h3>Employers</h3>
+
+<button type="button" class="btn-primary"@onclick="AddEmployer">Add New Employer</button>
+
+@if (employers != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employer in employers)
+            {
+                <tr>
+                    <td>@employer.Name</td>
+                    <td>@employer.Position</td>
+                    <td>@employer.Department</td>
+                    <td>
+                        <button class="btn btn-light" @onclick="() => EditEmployer(employer.Id)">Edit</button>
+                        <button class="btn btn-light" @onclick="() => DeleteEmployer(employer.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private IMS.CoreBusiness.Employer? employer;
+    private List<Employer> employers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        employers = await EmployerService.GetEmployersAsync();
+    }
+
+    private void AddEmployer()
+    {
+        // Logic to add a new employer
+    }
+
+    private void EditEmployer(int employerId)
+    {
+        // Logic to edit an existing employer
+    }
+
+    private void DeleteEmployer(int employerId)
+    {
+        // Logic to delete an employer
+    }
+}
+ *@

@@ -1,0 +1,91 @@
+﻿@page "/"
+
+@inject NavigationManager NavigationManager
+
+<div style="display:block; width:100%; ">
+    <br/><br/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Pakistan_Civil_Aviation_Authority_%28PCAA%29_Logo.png/1280px-Pakistan_Civil_Aviation_Authority_%28PCAA%29_Logo.png" height="200px" width="330px">
+    
+    <br/>
+    <h2 style="font-size: 60px; float:left;">Inventory Management System</h2>
+    <div style="width:800px; font-size: 30px;">
+       <br> Make your Inventory easy by     
+        <b>Listing Inventories, Check Product</b> and <b>Reports</b>
+    </div>
+
+
+    @* <br/><br/><br/><br/><br/> *@
+    <br /><br />
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            @* Inventory Card *@
+            <div class="col-md-3">
+                <div class="card h-100 shadow-lg">
+                    <div class="card-body">
+                        <h3 class="card-title">Inventory</h3>
+                        <p class="card-text">Manage your inventory details.</p>
+                        <button class="btn btn-success" @onclick="NavigateToInventoryList">View Inventory</button>
+                    </div>
+                </div>
+            </div>
+
+            @* Products Card *@
+            <div class="col-md-3">
+                <div class="card h-100 shadow-lg">
+                    <div class="card-body">
+                        <h3 class="card-title">Products</h3>
+                        <p class="card-text">View and manage products.</p>
+                        <button class="btn btn-success" @onclick="NavigateToProductList">View Products</button>
+                    </div>
+                </div>
+            </div>
+
+            @* Employers Card  *@
+            <div class="col-md-3">
+                <div class="card h-100 shadow-lg">
+                    <div class="card-body">
+                        <h3 class="card-title">Employers</h3>
+                        <p class="card-text">Access the employer details.</p>
+                        <button class="btn btn-success" @onclick="NavigateToEmployerList">View Employers</button>
+                    </div>
+                </div>
+            </div>
+            
+            @* Report Card *@
+            <div class="col-md-3">
+                <div class="card h-100 shadow-lg">
+                    <div class="card-body">
+                        <h3 class="card-title">Reports</h3>
+                        <p class="card-text">Check Transactional Reports.</p>
+                        <button class="btn btn-success" @onclick="NavigateToReportList">View Reports</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @code {
+        private void NavigateToInventoryList()
+        {
+            NavigationManager.NavigateTo("/inventories");
+        }
+
+        private void NavigateToProductList()
+        {
+            NavigationManager.NavigateTo("/products");
+        }
+
+        private void NavigateToEmployerList()
+        {
+            NavigationManager.NavigateTo("/employers");
+        }
+
+        private void NavigateToReportList()
+        {
+            NavigationManager.NavigateTo("/inventoryreport");
+        }
+    }
+</div>

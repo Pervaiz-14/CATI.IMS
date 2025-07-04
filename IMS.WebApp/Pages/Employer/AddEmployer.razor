@@ -1,0 +1,52 @@
+﻿@page "/addemployer"
+
+@attribute [Authorize]
+
+@inject EmployerService EmployerService
+@inject NavigationManager NavigationManager
+
+<h3>Add Employer</h3>
+<br />
+@if (employer != null)
+{
+    <EditForm Model="employer" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <ValidationSummary></ValidationSummary>
+
+        <div class="form-group">
+            <label for="name">Employer Name</label>
+            <InputText id="name" @bind-Value="employer.EmployerName" class="form-control"></InputText>
+        </div>
+
+        <div class="form-group">
+            <label for="position">Position</label>
+            <InputText id="position" @bind-Value="employer.EmployerPosition" class="form-control"></InputText>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department</label>
+            <InputText id="department" @bind-Value="employer.EmployerDepartment" class="form-control"></InputText>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Save</button>
+    </EditForm>
+}
+
+@code {
+    private Employer? employer;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        employer = new Employer();
+    }
+
+    private async Task OnValidSubmit()
+    {
+        if (this.employer != null)
+        {
+            await EmployerService.AddEmployerAsync(this.employer);
+            NavigationManager.NavigateTo("/employers");
+        }
+    }
+}

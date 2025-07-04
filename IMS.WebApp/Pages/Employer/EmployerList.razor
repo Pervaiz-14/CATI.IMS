@@ -1,0 +1,65 @@
+﻿@page "/employers"
+
+@using IMS.CoreBusiness
+@inject EmployerService EmployerService
+@inject NavigationManager NavigationManager
+
+<h3>Employer List</h3>
+
+@if (employers != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employer in employers)
+            {
+                <tr>
+                    <td>@employer.EmployerName</td>
+                    <td>@employer.EmployerPosition</td>
+                    <td>@employer.EmployerDepartment</td>
+                    <td>
+                        <button class="btn btn-light" @onclick="() => EditEmployer(employer.EmployerId)">Edit</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteEmployer(employer.EmployerId)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-primary mb-3" @onclick="AddEmployer">Add Employer</button>
+}
+else
+{
+    <p>Loading employers...</p>
+}
+
+@code {
+    private List<Employer> employers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        employers = await EmployerService.GetEmployersAsync();
+    }
+
+    private void AddEmployer()
+    {
+        NavigationManager.NavigateTo("/addemployer");
+    }
+
+    private async Task DeleteEmployer(int employerId)
+    {
+        await EmployerService.DeleteEmployerAsync(employerId);
+        employers = await EmployerService.GetEmployersAsync(); // Refresh the list
+    }
+
+    private void EditEmployer(int employerId)
+    {
+        NavigationManager.NavigateTo($"/editemployer/{employerId}");
+    }
+}
